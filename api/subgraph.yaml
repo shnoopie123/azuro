@@ -4,92 +4,14 @@ schema:
 features:
   - ipfsOnEthereumContracts
 dataSources:
-  {{#corev1}}
-  # V1
-  - kind: ethereum/contract
-    name: CoreV1
-    network: {{ network }}
-    source:
-      abi: CoreV1
-      address: "{{ corev1.address }}"
-      startBlock: {{ corev1.startBlock }}
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - SportHub
-        - Sport
-        - Country
-        - League
-        - Game
-        - Condition
-      abis:
-        - name: CoreV1
-          file: ./abis/CoreV1.json
-        - name: LPV1
-          file: ./abis/LPV1.json
-        - name: ERC20
-          file: ./abis/ERC20.json
-      eventHandlers:
-        - event: LpChanged(indexed address)
-          handler: handleLpChanged
-        - event: ConditionCreated(indexed uint256,indexed uint256,uint64)
-          handler: handleConditionCreated
-        - event: ConditionResolved(indexed uint256,indexed uint256,uint64,uint8,uint256)
-          handler: handleConditionResolved
-        - event: ConditionShifted(uint256,uint256,uint64)
-          handler: handleConditionShifted
-        - event: ConditionStopped(indexed uint256,bool)
-          handler: handleConditionStopped
-      file: ./src/v1/core.ts
-  {{/corev1}}
-  {{#freebetsv1}}
-  - kind: ethereum/contract
-    name: FreebetV1_{{ index }}
-    network: {{ network }}
-    source:
-      abi: FreebetV1
-      address: "{{ address }}"
-      startBlock: {{ startBlock }}
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - SportHub
-        - Sport
-        - Country
-        - League
-        - Game
-        - Condition
-      abis:
-        - name: FreebetV1
-          file: ./abis/FreebetV1.json
-      eventHandlers:
-        - event: FreeBetMinted(indexed address,indexed uint256,(uint128,uint64,uint64))
-          handler: handleFreeBetMinted
-        - event: FreeBetMintedBatch(address[],uint256[],(uint128,uint64,uint64)[])
-          handler: handleFreeBetMintedBatch
-        - event: FreeBetRedeemed(indexed address,indexed uint256,indexed uint256,uint128)
-          handler: handleFreeBetRedeemed
-        - event: FreeBetReissued(indexed address,indexed uint256,(uint128,uint64,uint64))
-          handler: handleFreeBetReissued
-        - event: BettorWin(address,uint256,uint128)
-          handler: handleBettorWin
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
-      file: ./src/v1/freebet.ts
-  {{/freebetsv1}}
-  {{#factoryv1}}
   # V2
   - kind: ethereum/contract
     name: FactoryV1
-    network: {{ network }}
+    network: matic
     source:
       abi: FactoryV1
-      address: "{{ factoryv1.address }}"
-      startBlock: {{ factoryv1.startBlock }}
+      address: "0xDe3E9A39aF548b5daA8365D30A5F6E7a7fA0203d"
+      startBlock: 38563568
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -118,16 +40,14 @@ dataSources:
         - event: NewCore(indexed address,indexed address,indexed string)
           handler: handleNewCore
       file: ./src/v2/factory.ts
-  {{/factoryv1}}
 
-  {{#freebetsv2}}
   - kind: ethereum/contract
-    name: FreebetV2_{{ index }}
-    network: {{ network }}
+    name: FreebetV2_1
+    network: matic
     source:
       abi: FreebetV2
-      address: "{{ address }}"
-      startBlock: {{ startBlock }}
+      address: "0x3df16FB8Dc28F63565AF2815E04a3368360FFd23"
+      startBlock: 38581027
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -156,12 +76,11 @@ dataSources:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
       file: ./src/v2/freebet.ts
-  {{/freebetsv2}}
 templates:
   # V1
   - kind: ethereum
     name: LPV1
-    network: {{ network }}
+    network: matic
     source:
       abi: LPV1
     mapping:
@@ -201,7 +120,7 @@ templates:
 
   - kind: ethereum
     name: AzuroBetV1
-    network: {{ network }}
+    network: matic
     source:
       abi: AzuroBetV1
     mapping:
@@ -226,7 +145,7 @@ templates:
   # V2
   - kind: ethereum
     name: LPV2
-    network: {{ network }}
+    network: matic
     source:
       abi: LPV2
     mapping:
@@ -266,7 +185,7 @@ templates:
 
   - kind: ethereum
     name: CoreV2
-    network: {{ network }}
+    network: matic
     source:
       abi: CoreV2
     mapping:
@@ -302,7 +221,7 @@ templates:
 
   - kind: ethereum
     name: ExpressV1
-    network: {{ network }}
+    network: matic
     source:
       abi: ExpressV1
     mapping:
@@ -327,7 +246,7 @@ templates:
 
   - kind: ethereum
     name: AzuroBetV2
-    network: {{ network }}
+    network: matic
     source:
       abi: AzuroBetV2
     mapping:
