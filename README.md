@@ -1,7 +1,7 @@
 # Azuro Subgraphs • [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Issues Report](https://img.shields.io/badge/issues-report-yellow.svg)](https://github.com/Azuro-protocol/Azuro-subgraphs/issues/new)
 
 This collections of subgraphs dynamically tracks Azuro protocol smart-contracts in order to provide customers accumulated data in useful format. It tracks of the current state of Azuro Protocol contracts, and contains data about games, conditions, bets and bets results.
-
+d
 ## Subgraphs
 
 - [Azuro-api](./api/README.md)
